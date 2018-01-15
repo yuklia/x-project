@@ -12,5 +12,5 @@
 */
 
 Route::get('', [ 'uses' => 'ExportController@welcome', 'as' => 'home'] );
-Route::get('view', [ 'uses' => 'ExportController@viewStudents', 'as' => 'view'] );
+Route::get('/students',  'StudentController@index');
 Route::get('export', [ 'uses' => 'ExportController@export', 'as' => 'export'] );
