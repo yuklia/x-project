@@ -23,8 +23,6 @@ class Students extends Model
 
     public function address()
     {
-
         return $this->hasOne('StudentAddresses', 'id');
-
     }
 }
