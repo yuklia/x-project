@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class StudentsAddressTableSeeder extends Seeder
+class AddressesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -638,7 +638,7 @@ class StudentsAddressTableSeeder extends Seeder
         ];
 
         foreach ($addresses as $address) {
-            StudentAddresses::create($address);
+            \App\Address::create($address);
         }
     }
 }

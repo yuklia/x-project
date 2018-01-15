@@ -912,7 +912,7 @@ class StudentsTableSeeder extends Seeder
             ];
 
             foreach ($students as $student) {
-                Students::create($student);
+                \App\Student::create($student);
             }
         }
     }

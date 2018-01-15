@@ -263,8 +263,7 @@ class CoursesTableSeeder extends Seeder
 
 
         foreach ($courses as $course) {
-            \App\Models\Course::create($course);
+            \App\Course::create($course);
         }
     }
-
 }
