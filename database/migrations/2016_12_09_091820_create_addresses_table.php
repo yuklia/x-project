@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStudentTable extends Migration
+class CreateAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +12,13 @@ class CreateStudentTable extends Migration
      */
     public function up()
     {
-        Schema::create('student', function ($table) {
+        Schema::create('addresses', function ($table) {
             $table->increments('id')->unsigned();
-            $table->text('firstname');
-            $table->text('surname');
-            $table->text('email');
-            $table->text('nationality');
-            $table->integer('address_id');
-            $table->integer('course_id');
+            $table->string('house_number');
+            $table->string('line_1');
+            $table->string('line_2');
+            $table->string('postcode');
+            $table->string('city');
             $table->timestamps();
         });
     }
