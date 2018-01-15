@@ -1,0 +1,40 @@
+version: "3"
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_USER=dev
+      - MYSQL_PASSWORD=devpass
+      - MYSQL_DATABASE=x-project
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+
+  php:
+    build: ./php
+    volumes:
+      - ./../:/var/www
+    environment:
+      - XDEBUG_CONFIG=remote_host=10.254.254.254
+      - PHP_IDE_CONFIG=serverName=x-project.com # for console debugging
+    links:
+      - db
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx/prx.conf:/prx.conf
+      - ./../:/var/www
+    ports:
+      - "8080:80"
+    environment:
+      - NGINX_HOST=x-project.com
+      - NGINX_PORT=80
+    command: /bin/bash -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /prx.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    links:
+      - php
+
+volumes:
+  mysqldata:
