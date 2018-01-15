@@ -20,7 +20,6 @@ class CreateStudentsTable extends Migration
             $table->string('nationality');
             $table->integer('address_id');
             $table->integer('course_id');
-            $table->timestamps();
         });
     }
 

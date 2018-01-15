@@ -16,7 +16,6 @@ class CreateCoursesTable extends Migration
             $table->increments('id')->unsigned();
             $table->string('course_name');
             $table->string('university');
-            $table->timestamps();
         });
     }
 

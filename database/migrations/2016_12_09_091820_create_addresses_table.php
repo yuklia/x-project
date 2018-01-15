@@ -19,7 +19,6 @@ class CreateAddressesTable extends Migration
             $table->string('line_2');
             $table->string('postcode');
             $table->string('city');
-            $table->timestamps();
         });
     }
 
