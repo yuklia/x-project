@@ -12,3 +12,11 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::group([
+    'namespace' => 'Api\V1',
+    'prefix' => 'v1'
+], function () {
+
+    Route::get('/students', 'StudentController@index');
+});
