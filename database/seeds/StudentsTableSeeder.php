@@ -907,7 +907,9 @@ class StudentsTableSeeder extends Seeder
                     "surname"     => "Bosco",
                     "firstname"   => "Emilia",
                     "nationality" => "São Tomé and Príncipe",
-                    "email"       => "Yasmin@darwin.us"
+                    "email"       => "Yasmin@darwin.us",
+                    "address_id"  => rand(0, 88),
+                    "course_id"   => rand(0, 199)
                 ]
             ];
 
