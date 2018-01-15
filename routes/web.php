@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('', [ 'uses' => 'ExportController@welcome', 'as' => 'home'] );
-Route::get('/students',  'StudentController@index');
-Route::get('export', [ 'uses' => 'ExportController@export', 'as' => 'export'] );
+Route::get('/home', [ 'uses' => 'HomeController@index', 'as' => 'home']);
+
+Route::get('/export-all', ['uses' =>
+    'ExportController@exportStudentsToCSV',
+    'as' => 'export-all'
+]);
+
+Route::get('/export-course-attendance',
+    ['uses' => 'ExportController@exportCourseAttendanceToCSV',
+        'as' => 'export-course-attendance'
+    ]);
+
+Route::get('/', 'ExportController@welcome');
