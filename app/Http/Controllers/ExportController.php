@@ -17,15 +17,6 @@ class ExportController extends Controller
     }
 
     /**
-     * View all students found in the database
-     */
-    public function viewStudents()
-    {
-        $students = Students::with('course')->get();
-        return view('view_students', compact(['students']));
-    }
-
-    /**
      * Exports all student data to a CSV file
      */
     public function exportStudentsToCSV()
