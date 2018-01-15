@@ -8,14 +8,13 @@ class Student extends Model
 {
     public $timestamps = false;
 
-
     public function course()
     {
-        return $this->belongsTo('Course');
+        return $this->belongsTo(Course::class);
     }
 
     public function address()
     {
-        return $this->hasOne('StudentAddresses', 'id');
+        return $this->hasOne(Address::class);
     }
 }
