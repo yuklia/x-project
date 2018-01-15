@@ -14,7 +14,7 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function ($table) {
             $table->increments('id')->unsigned();
-            $table->string('name');
+            $table->string('course_name');
             $table->string('university');
             $table->timestamps();
         });

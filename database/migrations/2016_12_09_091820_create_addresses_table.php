@@ -14,7 +14,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function ($table) {
             $table->increments('id')->unsigned();
-            $table->string('house_number');
+            $table->string('houseNo');
             $table->string('line_1');
             $table->string('line_2');
             $table->string('postcode');
