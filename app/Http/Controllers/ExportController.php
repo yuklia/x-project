@@ -17,18 +17,9 @@ class ExportController extends Controller
      */
     public function exportStudentsToCSV()
     {
-        $students = Student::all()->toArray();
-
-        $formattedData = formatDataForCSV($students);
-        $now = date('Y-m-d');
-
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=students_$now.csv");
-        header("Pragma: no-cache");
-        header("Expires: 0");
-
-        echo $formattedData;
-        exit;
+        $data = Student::all()->toArray();
+        $fileName = sprintf('students_%s', date('Y-m-d'));
+        return $this->export($fileName, $data);
     }
 
     /**
@@ -37,20 +28,38 @@ class ExportController extends Controller
     public function exportCourseAttendanceToCSV()
     {
         $result = DB::table('students')
-        ->join('courses', 'students.course_id', '=', 'courses.id')
-        ->select(DB::raw('course_name, count(students.id) as total'))
-        ->groupBy('course_name')
-        ->get()->toArray();
+            ->join('courses', 'students.course_id', '=', 'courses.id')
+            ->select(DB::raw('course_name, count(students.id) as total'))
+            ->groupBy('course_name')
+            ->get()->toArray();
 
-        $formattedData = formatDataForCSV($result);
-        $now = date('Y-m-d');
+        $fileName = sprintf('course_attendance_%s', date('Y-m-d'));
+        return $this->export($fileName, $result);
+    }
 
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=course_attendance_$now.csv");
-        header("Pragma: no-cache");
-        header("Expires: 0");
+    protected function export($fileName, $data)
+    {
+        $headers = [
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName.csv",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        ];
 
-        echo $formattedData;
-        exit;
+        $columns = array_keys((array)array_shift($data));
+
+        $callback = function () use ($data, $columns) {
+            $file = fopen('php://output', 'w');
+
+            fputcsv($file, $columns);
+
+            array_map(function ($item) use ($file) {
+                fputcsv($file, array_values((array)$item));
+            }, $data);
+
+            fclose($file);
+        };
+        return response()->stream($callback, 200, $headers);
     }
 }
