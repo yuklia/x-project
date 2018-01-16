@@ -16,11 +16,11 @@
         <th>Course</th>
     </tr>
     <tr v-for="student in students">
-        <td>@{{ student.forename }}</td>
-        <td>@{{ student.surname }}</td>
-        <td>@{{ student.email }}</td>
-        <td>@{{ student.university }}</td>
-        <td>@{{ student.course }}</td>
+        <td class="item">@{{ student.firstname }}</td>
+        <td class="item">@{{ student.surname }}</td>
+        <td class="item">@{{ student.email }}</td>
+        <td class="item">@{{ student.course.university }}</td>
+        <td class="item">@{{ student.course.course_name }}</td>
     </tr>
 </table>
 
