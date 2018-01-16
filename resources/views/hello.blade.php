@@ -57,7 +57,7 @@
 
     <p>Oh and there may be some 'deliberate' errors in the code... Enjoy.</p>
 
-    <p><a href="{{url('view')}}" title="task">Click here to continue to the challenge</a></p>
+    <p><a href="{{url('home')}}" title="task">Click here to continue to the challenge</a></p>
 
 </div>
 </body>
