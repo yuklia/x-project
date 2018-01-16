@@ -1,7 +1,19 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: yuklia
- * Date: 1/15/18
- * Time: 11:18 PM
- */
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Welcome to the task</title>
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="app">
+    @yield('content')
+</div>
+
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>
